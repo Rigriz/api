@@ -60,6 +60,19 @@ export async function GET(request) {
     const url = new URL(request.url);
     const queryParams = Object.fromEntries(url.searchParams.entries());
     const webcontent = queryParams.webcontent;
+
+    // Log request details
+    //console.log("Request Details:");
+    //console.log("Method:", request.method);
+    //console.log("URL:", request.url);
+    //console.log("Headers:", request.headers);
+    console.log("Query Parameters:", queryParams);
+
+    // Optionally, log device details if available in headers
+    const userAgent = request.headers.get('user-agent');
+    if (userAgent) {
+        console.log("User-Agent:", userAgent);
+    }
     //console.log(webcontent);
     const data = await getStaticProps(webcontent);
     // console.log(webcontent);
